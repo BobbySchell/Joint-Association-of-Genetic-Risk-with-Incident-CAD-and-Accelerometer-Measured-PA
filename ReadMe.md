@@ -1,4 +1,4 @@
-Workflow and analysis code for SSM-Population Health paper "Does educational attainment modify the causal relationship between adiposity and cardiovascular disease? A Mendelian randomization study"
+Workflow and analysis code for "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort"
 ------------
 
 __Authors:__ Robert C. Schell,
@@ -18,8 +18,9 @@ David H. Rehkopf
 Repository Contents
 ------------
 
-This repository contains a detailed overview of the steps required to reproduce the analyses in the _SSM-Population Health_ article "Does educational attainment modify the causal relationship between adiposity and cardiovascular disease? A Mendelian randomization study."
-We detail the processing of the phenotype data, the genomic data, the code for the actual analyses, as well as sanity checks we made to increase our confidence in the data processing steps. This requires the use of several different software package, all of which are available on UK Biobank's Research Analysis Platform.
+This repository contains a detailed overview of the steps required to reproduce the analyses in "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort."
+
+This document gives an overview of all data processing, sanity checks, and analyses performed for this manuscript. I created an accelerometer cohort, a phenotype cohort, and a polygenic risk score and merged them as the primary outputs of the document. The accelerometer cohort and phenotype cohort are distinct because I needed to keep the phenotype cohort intact to allow direct comparisons with the PRS score’s performance in Tamlander et al., 2022 before merging them.
 
 Dataset Availability
 -----------
@@ -31,6 +32,7 @@ You must apply for the UK Biobank data through the Access Management System. Thi
 Documents in this repository and their role in the study replication
 ------------
 
+UPDATE THIS FOR PAPER...
 1. Overview of data processing and analysis steps.docx. This is the organizing document that references all of the other files required for successfully replicating this study.
 2. STEPS FOR COHORT FILTER (and docs)
 3. STEPS FOR PHENOTYPIC DATA PROCESSING (and docs)
