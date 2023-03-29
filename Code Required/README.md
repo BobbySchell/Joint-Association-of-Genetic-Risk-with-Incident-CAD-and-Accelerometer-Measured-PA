@@ -1,4 +1,4 @@
-Workflow and analysis code for "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort"
+REPLACE: Workflow and analysis code for "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort"
 ------------
 
 __Authors:__ Robert C. Schell,
