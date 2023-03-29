@@ -13,8 +13,8 @@
 
 ## Females
 
-| Name | Age | Gender |
-|------|-----|--------|
-| John | 25  | Male   |
-| Jane | 30  | Female |
-| Jack | 22  | Male   |
+| Variables         | Tertile 1 Mean | Tertile 2 Mean | Tertile 3 Mean |
+|-------------------|----------------|----------------|----------------|
+| Overall PAEE      | 28.73          | 39.59          | 53.13          |
+| ENMO              | 22.99          | 27.64          | 36.90          |
+| Percent MVPA      | 26.34          | 34.55          | 37.13          |
