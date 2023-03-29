@@ -32,13 +32,15 @@ You must apply for the UK Biobank data through the Access Management System. Thi
 Documents in this repository and their role in the study replication
 ------------
 
-UPDATE THIS FOR PAPER...
-1. Overview of data processing and analysis steps.docx. This is the organizing document that references all of the other files required for successfully replicating this study.
-2. STEPS FOR COHORT FILTER (and docs)
-3. STEPS FOR PHENOTYPIC DATA PROCESSING (and docs)
-4. STEPS FOR GENETIC DATA PROCESSING (and docs)
-5. STEPS FOR MERGING GENETIC AND PHENOTYPIC DATA (and docs)
-6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
-7. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
+Code for Data Processing:
+>1. Creating Accelerometer Cohort.ipynb
+>2. STEPS FOR COHORT FILTER (and docs
+>3. STEPS FOR PHENOTYPIC DATA PROCESSING (and docs)
+>4. STEPS FOR GENETIC DATA PROCESSING (and docs)
+>5. STEPS FOR MERGING GENETIC AND PHENOTYPIC DATA (and docs)
+
+Code for Results:
+>6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
+>7. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
 
 *SHOULD ALSO REFERENCE USEFUL RESOURCES USED TO HELP CREATE THIS
