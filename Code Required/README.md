@@ -32,14 +32,14 @@ You must apply for the UK Biobank data through the Access Management System. Thi
 Documents in this repository and their role in the study replication
 ------------
 
-Code for Data Processing:
+*Code for Data Processing:*
 >1. Creating Accelerometer Cohort.ipynb
 >2. Genomic Processing and Creation of Polygenic Risk Score.ipynb
 >3. Creating New Pheno Dataset and Merging with Accelerometer Cohort.ipynb
 >4. STEPS FOR GENETIC DATA PROCESSING (and docs)
 >5. STEPS FOR MERGING GENETIC AND PHENOTYPIC DATA (and docs)
 
-Code for Results:
+*Code for Results:*
 >6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
 >7. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
 
