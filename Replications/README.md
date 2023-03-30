@@ -1,3 +1,5 @@
+## Replications for Sanity Checking
+
 This folder contains the results for replications of other studies we conducted. Specifically, we:
 
 - Validated that the polygenic risk score performed as well as it should
