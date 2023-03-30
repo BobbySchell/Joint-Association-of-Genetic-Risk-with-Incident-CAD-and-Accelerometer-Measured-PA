@@ -31,5 +31,9 @@ Folder Structure in this repository and their role in the study replication
 ------------
 
 1. Code Required - This folder contains all of the code used to process the data, perform all analyses, and produce figures in JupyterLab Notebooks.
+
 2. Replications - This folder contains all of the results of studies we replicated. Most importantly, we validate the polygenic risk score and physical activity exposures.
-3. Storage - This is a folder being used to store documents off of my hard drive temporarily.
+
+3. Current Manuscript - This folder contains the most recently updated manuscript and its supplement.
+
+4. Storage - This is a folder being used to store documents off of my hard drive temporarily.
