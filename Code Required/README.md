@@ -36,7 +36,7 @@ Documents in this repository and their role in the study replication
 >1. Creating Accelerometer Cohort.ipynb
 >2. Genomic Processing and Creation of Polygenic Risk Score.ipynb
 >3. Creating New Pheno Dataset and Merging with Accelerometer Cohort.ipynb
->4. STEPS FOR GENETIC DATA PROCESSING (and docs)
+>4. Creating the Physical Activity Exposure Variables.ipynb
 >5. STEPS FOR MERGING GENETIC AND PHENOTYPIC DATA (and docs)
 
 *Code for Results:*
