@@ -42,6 +42,6 @@ Documents in this repository and their role in the study replication
 >7. Processing Covariates, Incident CAD for Final Dataset.ipynb
 
 *Code for Results:*
->8. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
->9. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
+>8. Main Results, Model Fit, PH Evaluation.ipynb
+>9. 
 >10. 
