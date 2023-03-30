@@ -39,10 +39,9 @@ Documents in this repository and their role in the study replication
 >4. Creating the Physical Activity Exposure Variables.ipynb
 >5. Evaluating Polygenic Risk Score and Merging with Accelerometer Cohort and Pheno Cohort.ipynb
 >6. Adding Further Covariates to Overall Dataset.ipynb
->7. 
+>7. Processing Covariates, Incident CAD for Final Dataset.ipynb
 
 *Code for Results:*
->6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
->7. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
-
-*SHOULD ALSO REFERENCE USEFUL RESOURCES USED TO HELP CREATE THIS
+>8. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
+>9. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
+>10. 
