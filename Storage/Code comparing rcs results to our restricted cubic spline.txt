@@ -1,0 +1,115 @@
+
+# -------
+# Comparing our approach to rcs
+# What explains this difference in efficiency?
+# -------
+
+# -------
+# rcs approach from rms package
+# Restricted cubic spline w/ three evenly spaced knots
+# These are placed at 10th/50th/90th percentiles
+# -------
+
+# Necessary precursor for cph
+dd <- datadist(datsubrestnona)
+options(datadist="dd")
+
+
+model <- cph(Surv(TimeAge, Status) ~ rcs(PAEEPOS, 3) + StandPGS + p22009_a1 + p22009_a2 + p22009_a3 + p22009_a4 + p22009_a5 + p22009_a6 + p22009_a7 + p22009_a8 + p22009_a9 + p22009_a10 + SeasonWear + Biological.Sex + Salt_InstChosen + NewAlc + NewOilFish + FnVScore + ProcMeat_InstChosen + ParentHist + MobilityDichot + NewEmploy + Townsend + NewEduc + SmokStat_InstChosen, data = datsubrestnona)
+
+summary(model)
+
+# Difference between 15 and 20 PAEE
+k1 <- matrix(c(5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0), nrow=1) # Calc log-HR @ 30 days
+
+# PA Diff = 5
+
+delta.eta <- glht(model, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 0.970496344822111
+# Lower = 0.947651698545199
+# Upper = 0.99389169750763
+
+
+
+
+# -------
+# Replicating rcs results manually
+# Restricted cubic spline with 3 evenly spaced knots
+# -------
+
+knots <- quantile(datsubrest$PAEEPOS, probs = c(0.10, 0.50, 0.90))
+knots
+# 10% 25.9491318778412
+# 50% 38.7595302926387
+# 90% 54.5613992585524
+
+
+datsubrest$ls.1 <- (datsubrest$PAEEPOS - 25.9491318778412)*as.integer(datsubrest$PAEEPOS > 25.9491318778412)
+datsubrest$ls.2 <- (datsubrest$PAEEPOS - 38.7595302926387)*as.integer(datsubrest$PAEEPOS > 38.7595302926387)
+datsubrest$ls.3 <- (datsubrest$PAEEPOS - 54.5613992585524)*as.integer(datsubrest$PAEEPOS > 54.5613992585524)
+
+
+# Unrestricted quadratic spline
+datsubrest$qs.1 <- datsubrest$ls.1^3
+datsubrest$qs.2 <- datsubrest$ls.2^3
+datsubrest$qs.3 <- datsubrest$ls.3^3
+
+
+# Doing the restricting
+datsubrest$rqs.1 <- datsubrest$qs.1 - datsubrest$qs.3
+datsubrest$rqs.2 <- datsubrest$qs.2 - datsubrest$qs.3
+
+
+
+fit.rqs <- coxph(Surv(TimeAge, Status) ~ PAEEPOS + rqs.1 + rqs.2 + StandPGS + p22009_a1 + p22009_a2 + p22009_a3 + p22009_a4 + p22009_a5 + p22009_a6 + p22009_a7 + p22009_a8 + p22009_a9 + p22009_a10 + SeasonWear + Biological.Sex + as.factor(Salt_InstChosen) + as.factor(NewAlc) + as.factor(NewOilFish) + FnVScore + ProcMeat_InstChosen + ParentHist + MobilityDichot + NewEmploy + Townsend + as.factor(NewEduc) + as.factor(SmokStat_InstChosen), data = datsubrest)
+
+
+summary(fit.rqs)
+
+
+
+# ------
+# REPEATING their analysis anyway to see what happens
+# ------
+
+(15 - 25.9491318778412)*as.integer(15 > 25.9491318778412)
+(15 - 38.7595302926387)*as.integer(15 > 38.7595302926387)
+(15 - 54.5613992585524)*as.integer(15 > 54.5613992585524)
+#0
+#0
+#0
+#0
+
+
+(20 - 25.9491318778412)*as.integer(20 > 25.9491318778412)
+(20 - 38.7595302926387)*as.integer(20 > 38.7595302926387)
+(20 - 54.5613992585524)*as.integer(20 > 54.5613992585524)
+#0
+#0
+#0
+#0
+
+
+# Creating spline codes to add
+qs.1 <- ls.1^3
+qs.2 <- ls.2^3
+qs.3 <- ls.3^3
+
+
+rqs.1 <- qs.1 - qs.4
+rqs.2 <- qs.2 - qs.4
+rqs.3 <- qs.3 - qs.4
+
+
+k1 <- matrix(c(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+# PA Diff = 5
+# 
+
+delta.eta <- glht(fit.rqs, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 0.954739251719029
+# Lower = 0.909414995908
+# Upper = 1.00232241921951
+
+# While it appears we follow the same process, the point estimate differs and CIs are wider

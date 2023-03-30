@@ -1,0 +1,119 @@
+# --------
+# Spark JL to bring FINAL COVARIATES to CAD analysis
+# This is for adding in covariates often used (and can be used subsequently if other confounders asked for)
+# 3/24/2023
+# --------
+
+
+# ------
+# Chunk 1
+# ------
+# Import packages
+import pyspark
+import dxpy
+import dxdata
+import pandas as pd
+import os
+
+from pyspark.sql.functions import when, concat_ws
+from re import sub
+
+# -------
+# Chunk 2
+# -------
+
+# Spark Initialization - DO NOT RUN MORE THAN ONCE
+sc = pyspark.SparkContext()
+spark = pyspark.sql.SparkSession(sc)
+
+# ------
+# Chunk 3
+# ------
+
+# Discover dispensed database name and dataset id
+dispensed_database_name = dxpy.find_one_data_object(classname = "database",
+						    name = "app*", folder = "/",
+						    name_mode = "glob",
+						    describe = True)["describe"]["name"]
+
+dispensed_dataset_id = dxpy.find_one_data_object(typename = "Dataset",
+						 name = "app*.dataset",
+						 folder = "/",
+						 name_mode = "glob")["id"]
+
+# -------
+# Chunk 4
+# Loading in the dataset
+# -------
+
+dataset = dxdata.load_dataset(id = dispensed_dataset_id)
+
+# --------
+# Chunk 5
+# Select unit of analysis
+# --------
+
+participant = dataset["participant"]
+
+
+
+
+# --------
+# Chunk 6
+# Load cohort and make field names vector
+# --------
+
+cohort = dxdata.load_cohort("Processed Cohort ALL ANCESTRIES")
+
+# p104920_i0 to _i4 - time spent doing LPA
+# Yesterday how much time spent doing X type activities
+
+# p104910_i0 to _i4 - time spent doing MVPA
+
+# p104900_i0 to _i4 - time spent doing vigorous PA
+
+# p894_i0 to _i4 - time spent doing moderative activity in TYPICAL day
+
+# p914_i0 to _i4 - time spent doing vig activity in TYPICAL day
+
+field_names = ["eid", "p104920_i0", "p104920_i1", "p104920_i2", "p104920_i3", "p104920_i4", "p104910_i0", "p104910_i1", "p104910_i2", "p104910_i3", "p104910_i4", "p104900_i0", "p104900_i1", "p104900_i2", "p104900_i3", "p104900_i4", "p894_i0", "p894_i1", "p894_i2", "p894_i3", "p914_i0", "p914_i1", "p914_i2", "p914_i3"]
+
+
+
+# -------
+# Chunk 7
+# Subset cohort to only relevant field_names
+# -------
+
+df = participant.retrieve_fields(names = field_names,
+				 filter_sql = cohort.sql,
+				 coding_values = "replace",
+				 engine = dxdata.connect())
+
+
+# -------
+# Chunk 8
+# Convert to Pandas DF
+# -------
+
+df_pandas = df.toPandas()
+df_pandas.head()
+
+# --------
+# Chunk 9
+# Write CSV
+# --------
+
+df_pandas.to_csv("FINALCovarsforCADSUBPA.csv")
+
+# -------
+# Chunk 10
+# Uploading via Bash
+# -------
+
+dx upload FINALCovarsforCADSUBPA.csv
+
+
+
+
+

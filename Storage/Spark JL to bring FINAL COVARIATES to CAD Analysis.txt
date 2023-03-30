@@ -1,0 +1,110 @@
+# --------
+# Spark JL to bring FINAL COVARIATES to CAD analysis
+# This is for adding in covariates often used (and can be used subsequently if other confounders asked for)
+# 3/17/2023
+# --------
+
+
+# ------
+# Chunk 1
+# ------
+# Import packages
+import pyspark
+import dxpy
+import dxdata
+import pandas as pd
+import os
+
+from pyspark.sql.functions import when, concat_ws
+from re import sub
+
+# -------
+# Chunk 2
+# -------
+
+# Spark Initialization - DO NOT RUN MORE THAN ONCE
+sc = pyspark.SparkContext()
+spark = pyspark.sql.SparkSession(sc)
+
+# ------
+# Chunk 3
+# ------
+
+# Discover dispensed database name and dataset id
+dispensed_database_name = dxpy.find_one_data_object(classname = "database",
+						    name = "app*", folder = "/",
+						    name_mode = "glob",
+						    describe = True)["describe"]["name"]
+
+dispensed_dataset_id = dxpy.find_one_data_object(typename = "Dataset",
+						 name = "app*.dataset",
+						 folder = "/",
+						 name_mode = "glob")["id"]
+
+# -------
+# Chunk 4
+# Loading in the dataset
+# -------
+
+dataset = dxdata.load_dataset(id = dispensed_dataset_id)
+
+# --------
+# Chunk 5
+# Select unit of analysis
+# --------
+
+participant = dataset["participant"]
+
+
+
+
+# --------
+# Chunk 6
+# Load cohort and make field names vector
+# --------
+
+cohort = dxdata.load_cohort("Processed Cohort ALL ANCESTRIES")
+
+
+field_names = ["eid", "p22032_i0", "p22039_i0", "p22038_i0", "p22040_i0", "p816_i0", "p816_i1", "p816_i2", "p816_i3", "p806_i0", "p806_i1", 
+"p806_i2", "p806_i3", "p21000_i0", "p21000_i1", "p21000_i2"]
+
+
+
+# -------
+# Chunk 7
+# Subset cohort to only relevant field_names
+# -------
+
+df = participant.retrieve_fields(names = field_names,
+				 filter_sql = cohort.sql,
+				 coding_values = "replace",
+				 engine = dxdata.connect())
+
+
+# -------
+# Chunk 8
+# Convert to Pandas DF
+# -------
+
+df_pandas = df.toPandas()
+df_pandas.head()
+
+# --------
+# Chunk 9
+# Write CSV
+# --------
+
+df_pandas.to_csv("FINALCovarsforCAD.csv")
+
+# -------
+# Chunk 10
+# Uploading via Bash
+# -------
+
+dx upload FINALCovarsforCAD.csv
+
+
+
+
+

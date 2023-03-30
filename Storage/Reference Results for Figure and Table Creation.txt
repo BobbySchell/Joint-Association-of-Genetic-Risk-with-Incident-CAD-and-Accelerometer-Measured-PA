@@ -1,0 +1,415 @@
+# ---------
+# PA ANALYSIS
+# White European Group
+# ---------
+
+
+# MODEL:
+fit.lin <- coxph(Surv(AgeBaseline, AgeBaseline + TimeYear, Status) ~ PAEEPOS + StandPGS + p22009_a1 + p22009_a2 + p22009_a3 + p22009_a4 + p22009_a5 + p22009_a6 + p22009_a7 + p22009_a8 + p22009_a9 + p22009_a10 + SeasonWear + as.factor(Salt_InstChosen) + as.factor(NewAlc) + as.factor(NewOilFish) + FnVScore + ProcMeat_InstChosen + ParentHist + MobilityDichot + NewEmploy + Townsend + as.factor(NewEduc) + as.factor(SmokStat_InstChosen) + strata(Biological.Sex), data = whitedata)
+
+summary(fit.lin)
+
+# NATURALLY:
+# 20th/20th PA/Genetic Risk = 1 (REF)
+
+# Change PA from 20th to 40th percentile w/ genetic risk at 20th
+48.6690567680804 - 41.5283167027557
+k1 <- matrix(c(-7.14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.11652155618926
+# Lower = 1.07596845150906
+# Upper = 1.15860310187245
+
+
+# Change PA from 20th to 60th percentile w/ genetic risk at 20th
+48.6690567680804 - 36.0267497376078
+k1 <- matrix(c(-12.64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.21545682777667
+# Lower = 1.13840024268355
+# Upper = 1.29772925619412
+
+
+# Change PA from 20th to 80th percentile w/ genetic risk at 20th
+48.6690567680804 - 30.1581806907346
+k1 <- matrix(c(-18.51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.33073773344321
+# Lower = 1.20903339548728
+# Upper = 1.46469313570603
+
+# --------
+# REPEATING COMPARISON WITH 40th percentile genetic risk
+# --------
+
+# 20th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.26015859525868
+# Lower = 1.22046752845051
+# Upper = 1.30114046313091
+
+# 40th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(-7.14, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.4069942358235
+# Lower = 1.34049264596968
+# Upper = 1.47679495713199
+
+# 60th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(-12.64, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.53166836868863
+# Lower = 1.42483195487425
+# Upper = 1.64651556530281
+
+
+# 80th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(-18.51, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.67694059283352
+# Lower = 1.51662264737505
+# Upper = 1.85420530067913
+
+
+# --------
+# REPEATING COMPARISON WITH 60th percentile genetic risk
+# --------
+
+# 20th PA/60th genetic risk
+0.236609243902655 - -0.846868164911578
+k1 <- matrix(c(0, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.53814989243258
+# Lower = 1.44916489826289
+# Upper = 1.63259895021358
+
+
+# 40th PA/60th genetic risk
+0.236609243902655 - -0.846868164911578
+k1 <- matrix(c(-7.14, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.71737751155117
+# Lower = 1.60208179701826
+# Upper = 1.84097061877302
+
+# 60th PA/60th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(-12.64, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.86955478890114
+# Lower = 1.7126827187969
+# Upper = 2.04079545519001
+
+
+# 80th PA/60th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(-18.51, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.04687410155165
+# Lower = 1.83022812317304
+# Upper = 2.28916468638853
+
+
+
+
+# --------
+# REPEATING COMPARISON WITH 80th percentile genetic risk
+# --------
+
+# 20th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(0, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.94605600484178
+# Lower = 1.77474461325982
+# Upper = 2.13390363080162
+
+
+# 40th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(-7.14, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.1728134789574
+# Lower = 1.96881707621819
+# Upper = 2.39794670178681
+
+
+# 60th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(-12.64, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.36534705832074
+# Lower = 2.11482861054949
+# Upper = 2.6455414298811
+
+
+# 80th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(-18.51, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.lin, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.5896901570367
+# Lower = 2.2702843233521
+# Upper = 2.95403313165223
+
+
+
+
+# ---------
+# MVPA ANALYSIS
+# White European Group
+# ---------
+
+
+
+
+# MODEL:
+fit.linMVPA <- coxph(Surv(AgeBaseline, AgeBaseline + TimeYear, Status) ~ PAEEPOS + PercentMVPA + StandPGS + p22009_a1 + p22009_a2 + p22009_a3 + p22009_a4 + p22009_a5 + p22009_a6 + p22009_a7 + p22009_a8 + p22009_a9 + p22009_a10 + SeasonWear + as.factor(Salt_InstChosen) + as.factor(NewAlc) + as.factor(NewOilFish) + FnVScore + ProcMeat_InstChosen + ParentHist + MobilityDichot + NewEmploy + Townsend + as.factor(NewEduc) + as.factor(SmokStat_InstChosen) + strata(Biological.Sex), data = whitedata)
+
+summary(fit.linMVPA)
+
+
+# NATURALLY:
+# 20th/20th PA/Genetic Risk = 1 (REF)
+
+# Change PA from 20th to 40th percentile w/ genetic risk at 20th
+0.454333631101671 - 0.385086263660446
+k1 <- matrix(c(0, -0.069, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.14817447628353
+# Lower = 1.09478715788506
+# Upper = 1.20416522836795
+
+
+# Change PA from 20th to 60th percentile w/ genetic risk at 20th
+0.454333631101671 - 0.326224308037015
+k1 <- matrix(c(0, -0.128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.29216799871768
+# Lower = 1.18293105438744
+# Upper = 1.4114923525908
+
+
+# Change PA from 20th to 80th percentile w/ genetic risk at 20th
+0.454333631101671 - 0.259328225722848
+k1 <- matrix(c(0, -0.195, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.47770420971715
+# Lower = 1.29166275324668
+# Upper = 1.69054168816677
+
+# --------
+# REPEATING COMPARISON WITH 40th percentile genetic risk
+# --------
+
+# 20th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, 0, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.26029062347419
+# Lower = 1.22058682131071
+# Upper = 1.30128592893651
+
+
+# 40th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, -0.069, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.44703352657253
+# Lower = 1.36631693528161
+# Upper = 1.53251853428381
+
+
+# 60th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, -0.128, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.62850721273731
+# Lower = 1.48244003738407
+# Upper = 1.78896661926188
+
+
+
+# 80th PA/40th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, -0.195, 0.58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.86233675977486
+# Lower = 1.62172439496167
+# Upper = 2.13864835331081
+
+
+# --------
+# REPEATING COMPARISON WITH 60th percentile genetic risk
+# --------
+
+# 20th PA/60th genetic risk
+0.236609243902655 - -0.846868164911578
+k1 <- matrix(c(0, 0, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.53844998523622
+# Lower = 1.44942866503642
+# Upper = 1.63293883594737
+
+
+# 40th PA/60th genetic risk
+0.236609243902655 - -0.846868164911578
+k1 <- matrix(c(0, -0.069, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.766409006087
+# Lower = 1.63661085210499
+# Upper = 1.90650133644911
+
+# 60th PA/60th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, -0.128, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.98793583854993
+# Lower = 1.78692498428352
+# Upper = 2.21155836587945
+
+
+# 80th PA/60th genetic risk
+-0.846868164911578 - -0.266874315609926
+k1 <- matrix(c(0, -0.195, 1.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.27337401962285
+# Lower = 1.96216146720331
+# Upper = 2.63394706270655
+
+
+
+
+# --------
+# REPEATING COMPARISON WITH 80th percentile genetic risk
+# --------
+
+# 20th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(0, 0, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 1.94664312651781
+# Lower = 1.77524413276799
+# Upper = 2.13459061324175
+
+
+# 40th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(0, -0.069, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.23508595230052
+# Lower = 2.01476382786725
+# Upper = 2.47950114304925
+
+
+# 60th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(0, -0.128, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.51538995301005
+# Lower = 2.21380689914909
+# upper = 2.85805714045604
+
+
+# 80th PA/80th genetic risk
+0.821322441664612 - -0.846868164911578
+k1 <- matrix(c(0, -0.195, 1.67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow=1)
+
+
+delta.eta <- glht(fit.linMVPA, linfct=k1)
+exp(confint(delta.eta)$confint)[,1:3]
+# Estimate = 2.87656274287232
+# Lower = 2.44349651949823
+# Upper = 3.3863822385883
+
+
