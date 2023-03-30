@@ -18,9 +18,7 @@ David H. Rehkopf
 Repository Contents
 ------------
 
-This repository contains a detailed overview of the steps required to reproduce the analyses in "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort."
-
-This document gives an overview of all data processing, sanity checks, and analyses performed for this manuscript. I created an accelerometer cohort, a phenotype cohort, and a polygenic risk score and merged them as the primary outputs of the document. The accelerometer cohort and phenotype cohort are distinct because I needed to keep the phenotype cohort intact to allow direct comparisons with the PRS score’s performance in Tamlander et al., 2022 before merging them.
+This repository contains a detailed overview of the steps required to reproduce the analyses in "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort." This includes in-depth data processing, the replications of other studies we performed to sanity check our results, and running the main and sensitivity analyses and creating the figures.
 
 Dataset Availability
 -----------
@@ -29,16 +27,9 @@ You must apply for the UK Biobank data through the Access Management System. Thi
 
 ---
 
-Documents in this repository and their role in the study replication
+Folder Structure in this repository and their role in the study replication
 ------------
 
-UPDATE THIS FOR PAPER...
-1. Overview of data processing and analysis steps.docx. This is the organizing document that references all of the other files required for successfully replicating this study.
-2. STEPS FOR COHORT FILTER (and docs)
-3. STEPS FOR PHENOTYPIC DATA PROCESSING (and docs)
-4. STEPS FOR GENETIC DATA PROCESSING (and docs)
-5. STEPS FOR MERGING GENETIC AND PHENOTYPIC DATA (and docs)
-6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
-7. ANALYSIS CODE FOR RUNNING THE MODELS AND PRODUCING FIGURES AND TABLES (and docs)
-
-*SHOULD ALSO REFERENCE USEFUL RESOURCES USED TO HELP CREATE THIS
+1. Code Required - This folder contains all of the code used to process the data, perform all analyses, and produce figures in JupyterLab Notebooks.
+2. Replications - This folder contains all of the results of studies we replicated. Most importantly, we validate the polygenic risk score and physical activity exposures.
+3. Storage - This is a folder being used to store documents off of my hard drive temporarily.
