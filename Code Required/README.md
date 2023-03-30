@@ -38,7 +38,8 @@ Documents in this repository and their role in the study replication
 >3. Creating New Pheno Dataset and Merging with Accelerometer Cohort.ipynb
 >4. Creating the Physical Activity Exposure Variables.ipynb
 >5. Evaluating Polygenic Risk Score and Merging with Accelerometer Cohort and Pheno Cohort.ipynb
->6. 
+>6. Adding Further Covariates to Overall Dataset.ipynb
+>7. 
 
 *Code for Results:*
 >6. SANITY CHECKS PERFORMED AND RATIONALE DOCUMENT (and docs)
