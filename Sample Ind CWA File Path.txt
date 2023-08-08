@@ -1,0 +1,17 @@
+
+dx download /mnt/project/Bulk/Activity/Raw/10/1000011_90001_0_0.cwa
+
+# TRYING TO GET FILE PATH RIGHT...
+dx download \projects\G9Q6100JGF8113444JxX34Bx\data\Bulk\Activity\Raw\10\1000011_90001_0_0.cwa
+
+dx download /mnt/projects/G9Q6100JGF8113444JxX34Bx/data/Bulk/Activity/Raw/10/1000011_90001_0_0.cwa
+
+
+dx download /data/Bulk/Activity/Raw/10/1000011_90001_0_0.cwa
+
+
+# THIS is the correct path
+dx download /Bulk/Activity/Raw/10/1000011_90001_0_0.cwa
+# For eid 1000011
+
+

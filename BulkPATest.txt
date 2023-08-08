@@ -1,0 +1,59 @@
+import pyspark
+import dxpy
+import dxdata
+import pandas as pd
+import os
+
+from pyspark.sql.functions import when, concat_ws
+from re import sub
+
+
+
+sc = pyspark.SparkContext()
+spark = pyspark.sql.SparkSession(sc)
+
+
+
+
+dispensed_database_name = dxpy.find_one_data_object(classname = "database",
+    name = "app*", folder = "/",
+    name_mode = "glob",
+    describe = True)["describe"]["name"]
+
+dispensed_dataset_id = dxpy.find_one_data_object(typename = "Dataset",
+ name = "app*.dataset",
+ folder = "/",
+ name_mode = "glob")["id"]
+
+
+
+dataset = dxdata.load_dataset(id = dispensed_dataset_id)
+
+
+
+participant = dataset["participant"]
+
+
+
+
+cohort = dxdata.load_cohort("Processed Cohort ALL ANCESTRIES")
+
+
+field_names = ["eid", "p90001_i0", "p90001_i1", "p90001_i2", "p90001_i3", "p90001_i4"]
+
+
+
+
+df = participant.retrieve_fields(names = field_names,
+ filter_sql = cohort.sql,
+ coding_values = "replace",
+ engine = dxdata.connect())
+
+
+df_pandas = df.toPandas()
+df_pandas.head()
+
+
+df_pandas.to_csv("BULKPATEST.csv")
+
+dx upload BULKPATEST.csv
