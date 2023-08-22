@@ -17,7 +17,7 @@ Notebooks in this folder and their role in the study replication
 >7. Processing Covariates, Incident CAD for Final Dataset.ipynb
 
 *Code for Data Processing (Sensitivity Analysis):*
-
+>4. PAEE Sensitivity Analysis: Creating the Physical Activity Exposure Variables.ipynb
 
 *Code for Results:*
 >8. Main Results, Model Fit, PH Evaluation.ipynb
