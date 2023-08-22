@@ -18,6 +18,7 @@ Notebooks in this folder and their role in the study replication
 
 *Code for Data Processing (Sensitivity Analysis):*
 >4. PAEE Sensitivity Analysis: Creating the Physical Activity Exposure Variables.ipynb
+>8. PAEE Sensitivity Analysis Results, Model Fit, PH Evaluation.ipynb
 
 *Code for Results:*
 >8. Main Results, Model Fit, PH Evaluation.ipynb
