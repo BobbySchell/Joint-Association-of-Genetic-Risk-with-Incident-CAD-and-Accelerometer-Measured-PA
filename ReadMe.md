@@ -18,7 +18,7 @@ David H. Rehkopf
 Repository Contents
 ------------
 
-This repository contains a detailed overview of the steps required to reproduce the analyses in "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort." This includes in-depth data processing, the replications of other studies we performed to sanity check our results, and running the main and sensitivity analyses and creating the figures.
+This repository contains a detailed overview of the steps required to reproduce the analyses in "Joint Association of Genetic Risk and Accelerometer-Measured Physical Activity with Incident Coronary Artery Disease in the UK Biobank Cohort" published in <i>PLOS ONE</i>. This includes in-depth data processing, the replications of other studies we performed to sanity check our results, and running the main and sensitivity analyses and creating the figures.
 
 Dataset Availability
 -----------
